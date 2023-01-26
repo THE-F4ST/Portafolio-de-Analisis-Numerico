@@ -1,5 +1,6 @@
 #include <functional>
 #include <iostream>
+#include <iomanip>
 #include <cmath>
 
 float funcion(float x){
@@ -7,17 +8,21 @@ float funcion(float x){
 	return std::exp(-x) - x;
 }
 
-float algoritmoBiseccion(float, float, std::function<float(float)> );
+float algoritmoBiseccion(float, float, float, std::function<float(float)> );
+
+
 
 int main(){
 	float x;
-	x = algoritmoBiseccion(-2, 1, &funcion);	
-	std::cout << "La raiz es: " << x << std::endl;
+	x = algoritmoBiseccion(-2, 1, 0.05, &funcion);	
+	std::cout << "La raiz es: " << std::setprecision(6) << x << std::endl;
 	return 0;
 }
 
 
-float algoritmoBiseccion(float a, float b, std::function<float(float)> expr){
+
+
+float algoritmoBiseccion(float a, float b, float tolerancia, std::function<float(float)> expr){
 	float r, r_1;
 	float error = 1;
 	
@@ -57,7 +62,7 @@ float algoritmoBiseccion(float a, float b, std::function<float(float)> expr){
 		error = std::abs((expr(r_1) - expr(r))/expr(r));
 
 		std::cout << a << "\t" << b << "\t" << r << "\t\t" << error << "\n";
-	}while(error > 0.05);
+	}while(error > tolerancia);
 
 	return r;
 }

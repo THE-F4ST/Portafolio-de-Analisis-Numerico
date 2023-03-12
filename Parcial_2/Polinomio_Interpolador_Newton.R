@@ -35,11 +35,12 @@ polNewton <- function(x_vec, y_vec) {
   return(m)
 }
 
+
+# Example
 x_vec <- c(1,2,3,4)
 y_vec <- c(2,-1,0,1)
 M <- polNewton(x_vec, y_vec)
 M
-z <- paste(z, "0")
 
 
 
